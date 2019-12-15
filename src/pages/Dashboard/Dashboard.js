@@ -10,14 +10,9 @@ import Fullscreen from "react-full-screen";
 import FetchDataMin from '../../HOC/FetchDataMin'
 import {    getOverviewTableData,
             getBalanceHistory,
-<<<<<<< HEAD
             getTransactionHistory,
             getNewBalanceHistory,
             getNewTransactionHistory } from '../../service/axios-service'
-=======
-            getTransactionHistory, 
-            } from '../../service/axios-service'
->>>>>>> origin/feature/signup/welcomeslider
 import { user, balance, account} from '../../service/body-data'
 import { INVESTMENT_USER } from '../../config/config'
 // import { AnnotationLabel, EditableAnnotation, ConnectorElbow, ConnectorEndDot, Note } from 'react-annotation'
