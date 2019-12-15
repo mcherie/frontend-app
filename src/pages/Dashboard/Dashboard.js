@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import { Container, Row, Col, Button} from 'react-bootstrap';
+
+import { Container, Row, Col, Navbar, NavbarBrand, Button, Collapse, NavDropdown } from 'react-bootstrap';
+import { AnnotationLabel } from 'react-annotation';
+
 import PropTypes from 'prop-types';
 import './Dashboard.scss';
 import Fullscreen from "react-full-screen";
@@ -7,11 +10,17 @@ import Fullscreen from "react-full-screen";
 import FetchDataMin from '../../HOC/FetchDataMin'
 import {    getOverviewTableData,
             getBalanceHistory,
+<<<<<<< HEAD
             getTransactionHistory,
             getNewBalanceHistory,
             getNewTransactionHistory } from '../../service/axios-service'
+=======
+            getTransactionHistory, 
+            } from '../../service/axios-service'
+>>>>>>> origin/feature/signup/welcomeslider
 import { user, balance, account} from '../../service/body-data'
 import { INVESTMENT_USER } from '../../config/config'
+// import { AnnotationLabel, EditableAnnotation, ConnectorElbow, ConnectorEndDot, Note } from 'react-annotation'
 
 import {    LeftSidebar,
             ResponsiveSidebar,
@@ -24,7 +33,8 @@ import {    LeftSidebar,
             CustomSnackbar,
             GlobalUpdateModal,
             DepositModal,
-            WithdrawModal } from './../../components';
+            WithdrawModal,
+            WelcomeSlider } from './../../components';
 
 export default class Dashboard extends Component{
     /**
@@ -45,12 +55,14 @@ export default class Dashboard extends Component{
             isAlertVisible : false,
             alertType:'',
             alertMessage:'',
-            isFull: false,
-
+            showOrientation: parseInt(localStorage.getItem("new_user")) == 1,
+            isFull: false
         };
 
        this.showAlert = this.showAlert.bind(this);
        this.dismissAlert = this.dismissAlert.bind(this);
+       this.showWelcomePage = this.showWelcomePage.bind(this);
+       this.hideWelcomePage = this.hideWelcomePage.bind(this);
     }
 
     showAlert(message, type){
@@ -61,9 +73,20 @@ export default class Dashboard extends Component{
         this.setState({ isAlertVisible: false });
     }
 
+    showWelcomePage(){
+        this.setState({ showOrientation: true});
+    }
+
+    hideWelcomePage(){
+        this.setState({ showOrientation: false});
+
+       
+        
+    }
     goFull = () => {
         this.setState({ isFull: true });
       }
+
 
 
     // handleChange = (e)=>{
@@ -73,14 +96,17 @@ export default class Dashboard extends Component{
 
 
     render(){
-        const { refresh_interval_sec, linechart_time_days, isAlertVisible, alertType, alertMessage} = this.state;
+        const { refresh_interval_sec, linechart_time_days, isAlertVisible, alertType, alertMessage, showOrientation} = this.state;
         const ref_code = localStorage.getItem("ref_code");
         let username = localStorage.getItem("username");
         const level =  localStorage.getItem("user_level");
         console.log("YOUR LEVEL IS: " + level)
-        // console.log("username ", localStorage.getItem("username"))
+        
         if(level == 0)
             username = INVESTMENT_USER
+
+        // if(showOrientation && level!=0)
+        // return 
 
         const ChartTableMin = FetchDataMin(ChartTable, getOverviewTableData, {"key":"username", "value":username});
         const DoughnutChartMin = FetchDataMin(DoughnutChart, getOverviewTableData, {"key":"username", "value":username});
@@ -88,8 +114,25 @@ export default class Dashboard extends Component{
 
         const TransactionTableMin = FetchDataMin(TransactionTable, getNewTransactionHistory, level == 0 ? {} : {username});
 
+
+        
+
         return (
             <div >
+            {
+             (showOrientation && level!=0) && 
+             (<div className="page-overlay">
+            
+                <WelcomeSlider
+                show={showOrientation}
+                onHide={this.hideWelcomePage} 
+                history={this.props.history} close={this.hideWelcomePage}></WelcomeSlider>
+            
+            </div>)
+        
+        }
+
+
             <div className="navigation d-lg-none d-sm">
                     <ResponsiveSidebar  history={this.props.history} />
             </div>
@@ -112,9 +155,11 @@ export default class Dashboard extends Component{
             
             <div className="dashboard-container">
 
+
                 <div className="expandButton d-none d-lg-block">
                     <Button style={{border:"none"}} variant="outline-dark" className="fa fa-expand" onClick={this.goFull}></Button>
                 </div>
+
 
                 <CustomSnackbar open={isAlertVisible} variant={alertType} message={alertMessage} onClose={this.dismissAlert}></CustomSnackbar>
                     
@@ -124,9 +169,12 @@ export default class Dashboard extends Component{
 
                 <Container fluid={true} className="content-wrapper " id="content-div">
                     <Container class="row form-group">
+                    
                     <Row >
-                        <Col></Col>
-                        <Col></Col>
+                        <Col> 
+                        
+                        </Col>
+                        
                     </Row>
 
                     <Row style={{ alignItems: "center"}} >
@@ -162,6 +210,8 @@ export default class Dashboard extends Component{
                 
                 
             </div>    
+
+            
             </div>    
         );
     }

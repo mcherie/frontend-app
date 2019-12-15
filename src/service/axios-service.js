@@ -30,4 +30,11 @@ export const getExchangeRates = () => Axios.get(BACKEND_API + 'fx/quote_rates');
 export const getRatesInCAD = () => Axios.get(BACKEND_API + 'fx/quote_rates_in_cad');
 export const exchangeInvestment = (data) => Axios.post(BACKEND_API + 'fx/exchange', data);
 export const getRatesHistory = (data) => Axios.post(BACKEND_API + "fx/rates_history", data);
+<<<<<<< HEAD
 export const getNewRatesHistory = (data) => Axios.post(BACKEND_API + "fx/new_rates_history", data);
+=======
+
+export const updateUserInfo = (data) => Axios.post(FRONTEND_API+'update_info', data);
+
+export const getUserInvestmentDetails = (data) => Axios.post(BACKEND_API + 'users/investments', data);
+>>>>>>> origin/feature/signup/welcomeslider
