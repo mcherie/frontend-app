@@ -193,7 +193,6 @@ s                                >{i.investment_name}</Link>
                     <i className="fa fa-exchange"></i>
                     <Link to="/payments" className="nav-link-top">Payments</Link>
                 </li>
-
                 <li className="nav-item">
                     <i className="fa fa-clock-o"></i>
                     <Link to="/stats" className="nav-link-top">Stats</Link>

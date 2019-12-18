@@ -28,7 +28,7 @@ class PaymentsTable extends Component {
             { 
                 Header: 'Investment' ,
                 accessor: 'investment_name',
-                // id:'investment'
+                id:'investment'
             
             },
             { 

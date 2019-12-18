@@ -68,6 +68,8 @@ export default class Dashboard extends Component{
         this.setState({ isAlertVisible: false });
     }
 
+
+
     showWelcomePage(){
         this.setState({ showOrientation: true});
     }
@@ -78,6 +80,9 @@ export default class Dashboard extends Component{
        
         
     }
+
+
+
     goFull = () => {
         this.setState({ isFull: true });
       }
