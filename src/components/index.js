@@ -21,3 +21,5 @@ export { default as GlobalUpdateModal } from './GlobalUpdateModal/GlobalUpdateMo
 export { default as WithdrawModal } from './WithdrawModal/WithdrawModal';
 export { default as TransferModal } from './TransferModal/TransferModal';
 export { default as ExchangeForm } from './ExchangeForm/ExchangeForm';
+export { default as WelcomeSlider} from './WelcomeSlider/WelcomeSlider';
+export { default as PaymentsTable} from './Table/PaymentsTable';
