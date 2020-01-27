@@ -112,7 +112,7 @@ export default class Dashboard extends Component{
         const DoughnutChartMin = FetchDataMin(DoughnutChart, getOverviewTableData, {"key":"username", "value":username});
         const LineChartMin = FetchDataMin(LineChart, getBalanceHistory, {username , time_period_days:linechart_time_days, chart:true });
 
-        const TransactionTableMin = FetchDataMin(TransactionTable, getNewTransactionHistory, level == 0 ? {} : {username});
+        const TransactionTableMin = FetchDataMin(TransactionTable, getTransactionHistory , level == 0 ? {} : {username});
 
 
         

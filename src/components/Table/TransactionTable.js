@@ -59,7 +59,7 @@ export default class TransactionTable extends Component {
             { Header: 'Description', accessor: mask? 'transaction_type': 'description' },
             { id:'amount', Header: 'Amount', 
                 accessor: (data) => {
-                    return formatAmount(+data.amount);
+                    return formatAmount(data.amount);
                 } ,
                 sortMethod: (a, b) => {
 
@@ -72,7 +72,7 @@ export default class TransactionTable extends Component {
             },
             { id: 'amount_cad', Header: 'Amount in CAD',
                 accessor: (data) => {
-                    return '$' + formatAmount(data.amount_cad,true);
+                    return formatAmount(data.amount_cad, true);
                 },
                 sortMethod: (a, b) => {
 
@@ -88,11 +88,9 @@ export default class TransactionTable extends Component {
 
                 id: 'account_balance', Header: 'Balance',
                 accessor: (data) => {
-                    return formatAmount(+data.account_balance);
+                    return formatAmount(data.account_balance_cad, true);
                 } ,
                 sortMethod: (a, b) => {
-
-                    console.log("cad: ",a,b)
                     let numericA = parseFloat(a.replace(/[^0-9.]+/g,''));
                     let numericB = parseFloat(b.replace(/[^0-9.]+/g,''));
 
